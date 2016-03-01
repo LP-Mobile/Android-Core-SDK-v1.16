@@ -1,8 +1,8 @@
-# Android-Core-SDK-v1.16
+# Android-Core-SDK-v1.17
 
-Release candidate v1.16 released 2/2/2016.
+Release candidate v1.17 released 3/1/2016.
 
-New version contains bug fixes and ability to configure timeout when app enters onPause().
+New version contains bug fixes and stability improvements on app initial launch.
 
 In order to update the timeout the app will need to use the constructor ApplicationLifecycleHandler(this, 300) in the application object.
 
