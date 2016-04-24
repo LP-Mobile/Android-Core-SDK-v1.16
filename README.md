@@ -1,17 +1,33 @@
-# Android-Core-SDK-v1.17
+# Android-Core-SDK-v1.18
 
-Release candidate v1.17 released 3/1/2016.
+Release candidate v1.18 released 24/Apr/2016.
 
-New version contains bug fixes and stability improvements on app initial launch.
+This new version exposed 3 new delegate methods:
 
-In order to update the timeout the app will need to use the constructor ApplicationLifecycleHandler(this, 300) in the application object.
+/**
+* By default the chat\survey window is hide when the visitor is tapping on the chat\survey background.
+* In order to prevent background tapping from hiding the chat\survey set this callback to false
+* @return - Set to false if you would like keep the chat\survey open even when the visitor tapping on the background.
+* In this case the chat\survey will be hide only base on back or cancel button.
+* Default: true
+*/
+public boolean shouldHideLPWindowOnBackgroundTapping();
 
-The second parameter (300) is optional and use to define delay time in ms that use when we check if the app moved to background. 
 
-Default = 150ms; Min = 50ms; Max = 2000ms. 
+/**
+* Indicate that an custom notification need to replace the default notification that issue by the SDK for chat events.
+* @return - Set to true if you would like override the default SDK chat notifications.
+* Default: false
+*/
+public boolean shouldUseCustomNotification();
 
-Example:
+/**
+* Replacing the SDK notification with custom notification that issue by the app.
+* Allow the app full control on the chat notification that should be issue by the SDK
+*
+* If shouldUseCustomNotification return true - you have to implement this method or chat notifications will not be issue.
+* @param title - notification title
+* @param message - notification message
+*/
+public void showCustomNotification(String title, String message);
 
-if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-    registerActivityLifecycleCallbacks(new ApplicationLifecycleHandler(this, 300));
-}
